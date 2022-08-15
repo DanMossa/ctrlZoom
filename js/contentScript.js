@@ -19,7 +19,7 @@
     window.addEventListener("keydown", keyPressed);
 
     function onWheel(e) {
-        zoom.handle(e, !(values.disable || !e.ctrlKey), () => {
+        zoom.handle(e, !(values.disable || !e.shiftKey), () => {
             if (Math.abs(e.wheelDelta) <= values.minimumScroll)
                 return;
             sendZoom({
@@ -45,10 +45,10 @@
     }
 
     function keyPressed(e) {
-        zoom.handle(e, e.ctrlKey && e.code == "Digit0", () => reset());
+        zoom.handle(e, e.shiftKey && e.code == "Digit0", () => reset());
         if (values.interceptPlusMinus) {
-            zoom.handle(e, e.ctrlKey && e.key == "+", () => sendZoom({ type: '+' }));
-            zoom.handle(e, e.ctrlKey && e.key == "-", () => sendZoom({ type: '-' }));
+            zoom.handle(e, e.shiftKey && e.key == "+", () => sendZoom({ type: '+' }));
+            zoom.handle(e, e.shiftKey && e.key == "-", () => sendZoom({ type: '-' }));
         }
     }
 
